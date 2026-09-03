@@ -1,0 +1,18 @@
+services:
+  siyuan:
+    image: b3log/siyuan:v3.8.2
+    container_name: siyuan
+    command: ['serve', '--workspace=/siyuan/workspace/', '--accessAuthCode=${AUTH_CODE}']
+    volumes:
+      - /opt/1panel/compose/siyuan/workspace:/siyuan/workspace
+    restart: unless-stopped
+    environment:
+      - TZ=America/Chicago
+      - PUID=1000
+      - PGID=1000
+    networks:
+      - caddynet
+
+networks:
+  caddynet:
+    external: true
