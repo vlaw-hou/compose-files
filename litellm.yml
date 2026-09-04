@@ -21,7 +21,7 @@ services:
       # to a separate reader endpoint, e.g. an Aurora reader. Leave unset for
       # single-DB deployments. With IAM_TOKEN_DB_AUTH enabled, the reader URL
       # is auto-refreshed alongside the writer.
-      # DATABASE_URL_READ_REPLICA: "postgresql://llmproxy:dbpassword9090@db-reader:5432/litellm"
+      # DATABASE_URL_READ_REPLICA: "postgresql://llmproxy:<dbpassword>@db-reader:5432/litellm"
       STORE_MODEL_IN_DB: "True" # allows adding models to proxy via UI
     # env_file:
       # - .env # env variables defined in app at compose
