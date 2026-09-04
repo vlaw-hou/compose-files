@@ -1,5 +1,6 @@
 services:
-  litellm:
+
+  litellm: # App Container
     build:
       context: .
       args:
@@ -35,7 +36,7 @@ services:
       retries: 3     # Retry up to 3 times if health check fails
       start_period: 40s  # Wait 40 seconds after container start before beginning health checks
 
-  db:
+  db: # Database Container
     image: postgres:16
     restart: always
     container_name: litellm_db
@@ -53,7 +54,7 @@ services:
       timeout: 5s
       retries: 10
 
-  prometheus:
+  prometheus: # System Monitoring Container
     image: prom/prometheus
     volumes:
       - prometheus_data:/prometheus
@@ -71,3 +72,9 @@ volumes:
     driver: local
   postgres_data:
     name: litellm_postgres_data # Named volume for Postgres data persistence
+
+networks:
+  caddynet:
+    external: True
+
+    
